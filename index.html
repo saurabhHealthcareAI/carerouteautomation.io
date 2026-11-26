@@ -1,0 +1,1541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="index, follow">
+<title>CareRoute Automation</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="CareRoute Automation builds AI and workflow automation for clinics, hospitals, labs and billing teams. Less paperwork. More patient care.">
+<meta name="theme-color" content="#0B1F3A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CareRoute Automation: Healthcare Workflow & AI Automation">
+<meta property="og:description" content="Automate the admin. Elevate the care. AI receptionists, reminders, intake, billing and EHR integrations for healthcare teams.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CareRoute Automation: Healthcare Workflow & AI Automation">
+<meta name="twitter:description" content="Automate the admin. Elevate the care. Healthcare automation by Saurabh Dubey.">
+<meta name="twitter:image" content="https://carerouteautomation.io/saurabh-dubey.webp">
+<meta property="og:url" content="https://carerouteautomation.io/">
+<meta property="og:site_name" content="CareRoute Automation">
+<meta property="og:image" content="https://carerouteautomation.io/saurabh-dubey.webp">
+<meta property="og:image:alt" content="Saurabh Dubey, Founder of CareRoute Automation">
+<link rel="canonical" href="https://carerouteautomation.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B1F3A'/%3E%3Cpath d='M10 36h12l5-12 7 22 5-14h15' fill='none' stroke='%230FB5A6' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": "#org",
+      "name": "CareRoute Automation",
+      "slogan": "Automate the admin. Elevate the care.",
+      "description": "Healthcare workflow and AI automation for clinics, hospitals, diagnostic labs, pharmacies, telehealth teams and medical billing companies.",
+      "url": "https://carerouteautomation.io/",
+      "logo": "https://carerouteautomation.io/saurabh-dubey.webp",
+      "email": "carerouteautomation@gmail.com",
+      "telephone": "+91-9889867096",
+      "contactPoint": { "@type": "ContactPoint", "contactType": "customer support", "email": "carerouteautomation@gmail.com", "telephone": "+91-9889867096", "availableLanguage": ["English", "Hindi"] },
+      "areaServed": "Worldwide",
+      "address": { "@type": "PostalAddress", "addressLocality": "Mohali", "addressRegion": "Punjab", "addressCountry": "IN" },
+      "founder": { "@id": "#founder" },
+      "sameAs": ["https://www.linkedin.com/in/saurabhdubey890"]
+    },
+    {
+      "@type": "Person",
+      "@id": "#founder",
+      "name": "Saurabh Dubey",
+      "jobTitle": "Founder & CEO, CareRoute Automation",
+      "description": "Healthcare AI Educator, Digital Healthcare Leadership and Consultant. Former Medical Coder at Knack RCM.",
+      "email": "saurabh.futurehealth@gmail.com",
+      "image": "https://carerouteautomation.io/saurabh-dubey.webp",
+      "worksFor": { "@id": "#org" },
+      "sameAs": ["https://www.linkedin.com/in/saurabhdubey890"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How much does healthcare automation cost?", "acceptedAnswer": { "@type": "Answer", "text": "Every project is quoted after a free automation audit, so you pay only for the workflows you need. Most practices start with one workflow and expand once they see the time saved." } },
+        { "@type": "Question", "name": "How long does it take to go live?", "acceptedAnswer": { "@type": "Answer", "text": "A first workflow typically goes live in 2 to 4 weeks. Larger integrations with EHR or billing systems can take longer, and we agree the timeline with you before work starts." } },
+        { "@type": "Question", "name": "Is patient data safe?", "acceptedAnswer": { "@type": "Answer", "text": "We design HIPAA-aware and GDPR-aware workflows: we collect only the data a workflow needs, encrypt it in transit, restrict access by role and keep audit trails. We sign NDAs and BAAs where required." } },
+        { "@type": "Question", "name": "Do I need technical staff?", "acceptedAnswer": { "@type": "Answer", "text": "No. We build, test and maintain the automations and train your team to use them." } }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+/* Layout concept: a patient's journey as a route. A navy hero band carries a live ECG-to-route line;
+   the page below reads like a calm clinical brief, with the route line reused as section dividers. */
+:root {
+  /* brand */
+  --navy: #0B1F3A;
+  --teal: #0FB5A6;
+  --mint: #E8FAF7;
+  --coral: #FF6B6B;
+  --cloud: #F8FAFC;
+  --slate: #334155;
+
+  /* semantic, light */
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-2: #E8FAF7;
+  --fg: #0B1F3A;
+  --text: #334155;
+  --muted: #56667B;
+  --line: rgba(11, 31, 58, .10);
+  --accent: #0FB5A6;
+  --accent-ink: #0A7A70;
+  --on-accent: #0B1F3A;
+  --warn-ink: #B93636;
+  --warn-soft: #FFECEC;
+  --glass: rgba(255, 255, 255, .78);
+  --shadow: 0 1px 2px rgba(11, 31, 58, .06), 0 12px 32px -12px rgba(11, 31, 58, .18);
+  --focus: #0A7A70;
+
+  /* hero band: same look in both themes */
+  --hero-bg: #0B1F3A;
+  --hero-fg: #F2FBFA;
+  --hero-muted: #AFC3D6;
+  --hero-line: rgba(242, 251, 250, .14);
+
+  /* type */
+  --font-display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --radius: 20px;
+  --radius-sm: 12px;
+  --max: 1180px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #06111F;
+    --surface: #0C1B30;
+    --surface-2: #0D2437;
+    --fg: #EAF6F8;
+    --text: #BCCAD9;
+    --muted: #8FA1B6;
+    --line: rgba(234, 246, 248, .10);
+    --accent: #14C7B7;
+    --accent-ink: #4FE3D4;
+    --on-accent: #06111F;
+    --warn-ink: #FF9A9A;
+    --warn-soft: rgba(255, 107, 107, .12);
+    --glass: rgba(10, 24, 43, .78);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 16px 40px -16px rgba(20, 199, 183, .18);
+    --focus: #4FE3D4;
+    --hero-bg: #040C17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #06111F;
+  --surface: #0C1B30;
+  --surface-2: #0D2437;
+  --fg: #EAF6F8;
+  --text: #BCCAD9;
+  --muted: #8FA1B6;
+  --line: rgba(234, 246, 248, .10);
+  --accent: #14C7B7;
+  --accent-ink: #4FE3D4;
+  --on-accent: #06111F;
+  --warn-ink: #FF9A9A;
+  --warn-soft: rgba(255, 107, 107, .12);
+  --glass: rgba(10, 24, 43, .78);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 16px 40px -16px rgba(20, 199, 183, .18);
+  --focus: #4FE3D4;
+  --hero-bg: #040C17;
+  color-scheme: dark;
+}
+
+/* ---------- base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 60; background: var(--glass);
+}
+h1, h2, h3, h4 { font-family: var(--font-display); color: var(--fg); line-height: 1.15; margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.9rem, 1.3rem + 2.4vw, 3rem); font-weight: 800; }
+h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
+p { margin: 0; }
+a { color: var(--accent-ink); }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 8px;
+}
+.wrap {
+  max-width: var(--max); margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.section { padding-block: clamp(64px, 9vw, 112px); }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 .78rem/1 var(--font-body); text-transform: uppercase; letter-spacing: .12em;
+  color: var(--accent-ink);
+}
+.eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--accent); border-radius: 2px; }
+.lede { font-size: clamp(1.05rem, 1rem + .3vw, 1.2rem); color: var(--text); max-width: 62ch; }
+.section-head { display: grid; gap: 16px; max-width: 760px; margin-bottom: clamp(36px, 5vw, 56px); }
+.section-head.center { margin-inline: auto; text-align: center; justify-items: center; }
+.icon { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ECG divider motif */
+.divider { display: block; width: 100%; height: 28px; color: var(--accent); opacity: .55; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 0 22px; border-radius: 999px;
+  font: 600 .98rem/1 var(--font-body); text-decoration: none; cursor: pointer;
+  border: 1.5px solid transparent; transition: transform .2s ease, background .2s ease, box-shadow .2s ease, border-color .2s;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--accent); color: var(--on-accent); box-shadow: 0 8px 24px -10px rgba(15, 181, 166, .7); }
+.btn-primary:hover { box-shadow: 0 12px 30px -10px rgba(15, 181, 166, .9); }
+.btn-ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+.btn-ghost:hover { border-color: var(--accent); }
+.btn-on-dark { color: var(--hero-fg); border-color: var(--hero-line); }
+.btn-on-dark:hover { border-color: var(--accent); }
+.btn-sm { min-height: 40px; padding: 0 16px; font-size: .9rem; }
+
+/* ---------- header ---------- */
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: var(--glass); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav { display: flex; align-items: center; gap: 24px; min-height: 68px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 800 1.25rem/1 var(--font-display); letter-spacing: -0.02em; color: var(--fg); }
+.logo .route { color: var(--accent); }
+.logo-mark { width: 34px; height: 34px; flex: none; }
+.logo small { display: block; font: 600 .62rem/1 var(--font-body); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.nav-links { display: flex; gap: 4px; margin-left: auto; list-style: none; padding: 0; margin-block: 0; }
+.nav-links a { display: block; padding: 10px 12px; border-radius: 10px; color: var(--text); text-decoration: none; font-weight: 500; font-size: .95rem; }
+.nav-links a:hover { color: var(--fg); background: var(--surface-2); }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.icon-btn {
+  width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface);
+  color: var(--fg); display: inline-grid; place-items: center; cursor: pointer;
+}
+.icon-btn:hover { border-color: var(--accent); }
+.theme-toggle .moon { display: none; }
+:root[data-theme="dark"] .theme-toggle .sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .moon { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .sun { display: none; }
+  :root:not([data-theme="light"]) .theme-toggle .moon { display: block; }
+}
+.menu-btn { display: none; }
+.mobile-nav { display: none; }
+@media (max-width: 960px) {
+  .nav-links, .nav .btn-primary { display: none; }
+  .nav-actions { margin-left: auto; }
+  .menu-btn { display: inline-grid; }
+  .mobile-nav { border-top: 1px solid var(--line); padding-block: 12px 20px; }
+  .mobile-nav.open { display: block; }
+  .mobile-nav ul { list-style: none; padding: 0; margin: 0 0 12px; display: grid; gap: 2px; }
+  .mobile-nav a:not(.btn) { display: block; padding: 12px 8px; color: var(--fg); text-decoration: none; font-weight: 600; border-radius: 10px; }
+  .mobile-nav a:not(.btn):hover { background: var(--surface-2); }
+  .mobile-nav .btn { width: 100%; }
+}
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative; overflow: hidden; isolation: isolate;
+  background: var(--hero-bg); color: var(--hero-fg);
+  padding-block: clamp(56px, 8vw, 96px) clamp(48px, 6vw, 72px);
+}
+.hero::before {
+  content: ""; position: absolute; inset: -20% -10% auto auto; width: 70vmax; height: 70vmax; z-index: -1;
+  background: radial-gradient(closest-side, rgba(15, 181, 166, .35), transparent 70%);
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: .08; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(32px, 5vw, 64px); align-items: end; }
+.hero h1 { color: var(--hero-fg); font-size: clamp(2.5rem, 1.5rem + 4.6vw, 4.6rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.02; }
+.hero h1 em { font-style: normal; color: var(--teal); }
+.hero .lede { color: var(--hero-muted); margin-top: 22px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; padding: 0; list-style: none; }
+.badges li {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px;
+  border: 1px solid var(--hero-line); color: var(--hero-fg); font-size: .85rem; font-weight: 500;
+  background: rgba(255, 255, 255, .03);
+}
+.badges .icon { width: 16px; height: 16px; color: var(--teal); }
+.hero-aside { display: grid; gap: 14px; }
+.hero-aside .promise {
+  font: 700 clamp(1.2rem, 1rem + .8vw, 1.6rem)/1.3 var(--font-display); color: var(--hero-fg); letter-spacing: -0.01em;
+  padding-left: 18px; border-left: 3px solid var(--teal);
+}
+.hero-aside p { color: var(--hero-muted); font-size: .95rem; }
+
+.route-card {
+  margin-top: clamp(40px, 6vw, 64px);
+  border: 1px solid var(--hero-line); border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .015));
+  padding: 20px clamp(16px, 3vw, 28px) 18px;
+}
+.route-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; align-items: center; }
+.route-title { display: inline-flex; align-items: center; gap: 10px; font: 600 .78rem/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--hero-muted); }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 0 rgba(15, 181, 166, .6); animation: ping 1.8s infinite; }
+@keyframes ping { 70% { box-shadow: 0 0 0 10px rgba(15, 181, 166, 0); } 100% { box-shadow: 0 0 0 0 rgba(15, 181, 166, 0); } }
+.route-status {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 6px 14px; border-radius: 999px;
+  background: rgba(15, 181, 166, .14); color: var(--hero-fg); font-size: .9rem; font-weight: 500;
+}
+.route-scroll { overflow-x: auto; margin-top: 8px; scrollbar-width: thin; }
+.route-svg { display: block; width: 100%; min-width: 760px; height: auto; }
+.route-svg .base { stroke: var(--hero-line); }
+.route-svg .live { stroke: var(--teal); filter: drop-shadow(0 0 6px rgba(15, 181, 166, .7)); }
+.route-svg .node circle.ring { fill: var(--hero-bg); stroke: var(--hero-line); stroke-width: 2; transition: stroke .3s, fill .3s; }
+.route-svg .node circle.core { fill: var(--hero-line); transition: fill .3s, r .3s; }
+.route-svg .node text { fill: var(--hero-muted); font: 600 15px var(--font-body); transition: fill .3s; }
+.route-svg .node.on circle.ring { stroke: var(--teal); fill: #0d2f45; }
+.route-svg .node.on circle.core { fill: var(--teal); }
+.route-svg .node.on text { fill: var(--hero-fg); }
+.route-svg .node.current circle.ring { stroke-width: 3; }
+.route-note { color: var(--hero-muted); font-size: .8rem; margin-top: 4px; }
+
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; align-items: start; }
+}
+
+/* ---------- stats strip ---------- */
+.stats { border-bottom: 1px solid var(--line); background: var(--surface); }
+.stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.stat { padding: 28px 20px; border-left: 1px solid var(--line); display: grid; gap: 4px; }
+.stat:first-child { border-left: 0; }
+.stat b { font: 800 clamp(1.8rem, 1.4rem + 1.4vw, 2.6rem)/1 var(--font-display); color: var(--fg); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.stat span { color: var(--muted); font-size: .9rem; }
+@media (max-width: 720px) {
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat:nth-child(3) { border-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+
+/* ---------- pain ---------- */
+.pain-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.pain {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 24px; display: grid; gap: 12px; align-content: start;
+}
+.pain .ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--warn-soft); color: var(--warn-ink); }
+.pain p { color: var(--text); font-size: .95rem; }
+.after-note { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; color: var(--muted); }
+@media (max-width: 960px) { .pain-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .pain-grid { grid-template-columns: 1fr; } }
+
+/* ---------- why ---------- */
+.why { background: var(--surface-2); }
+.why-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.word-split { display: grid; gap: 14px; }
+.word {
+  display: grid; grid-template-columns: auto 1fr; gap: 6px 20px; align-items: baseline;
+  padding: 22px 24px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line);
+}
+.word b { font: 800 clamp(2rem, 1.5rem + 2vw, 3rem)/1 var(--font-display); letter-spacing: -0.03em; color: var(--fg); }
+.word.route-w b { color: var(--accent-ink); }
+.word p { font-size: .98rem; }
+.equation { font: 700 1.05rem/1.5 var(--font-display); color: var(--fg); padding: 22px 24px; border-radius: var(--radius); background: var(--navy); color: #F2FBFA; }
+.equation span { color: var(--teal); }
+.why-copy { display: grid; gap: 18px; }
+.why-copy blockquote { margin: 0; font: 700 clamp(1.3rem, 1.1rem + .9vw, 1.8rem)/1.3 var(--font-display); color: var(--fg); letter-spacing: -0.015em; }
+@media (max-width: 860px) { .why-grid { grid-template-columns: 1fr; } }
+
+/* ---------- services ---------- */
+.svc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.svc {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 24px; display: grid; gap: 12px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s;
+}
+.svc:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+.svc .ico { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: var(--surface-2); color: var(--accent-ink); }
+.svc .benefit { color: var(--text); font-size: .95rem; }
+.svc details { border-top: 1px solid var(--line); padding-top: 10px; }
+.svc summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: .9rem; color: var(--accent-ink); padding: 4px 0; }
+.svc summary::-webkit-details-marker { display: none; }
+.svc summary .icon { width: 16px; height: 16px; transition: transform .2s; }
+.svc details[open] summary .icon { transform: rotate(90deg); }
+.svc details[open] summary .more-l::after { content: " less"; }
+.svc details:not([open]) summary .more-l::after { content: " more"; }
+.svc ul { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.svc li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; font-size: .92rem; }
+.svc li .icon { width: 18px; height: 18px; color: var(--accent-ink); margin-top: 3px; }
+@media (max-width: 960px) { .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .svc-grid { grid-template-columns: 1fr; } }
+
+/* ---------- before / after ---------- */
+.ba { background: var(--surface); border-block: 1px solid var(--line); }
+.ba-shell { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.switch-row { display: flex; align-items: center; gap: 14px; margin-top: 8px; flex-wrap: wrap; }
+.switch {
+  position: relative; width: 72px; height: 40px; border-radius: 999px; border: 0; cursor: pointer;
+  background: var(--warn-ink); transition: background .3s; flex: none;
+}
+.switch::after {
+  content: ""; position: absolute; top: 4px; left: 4px; width: 32px; height: 32px; border-radius: 50%;
+  background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.25); transition: transform .3s cubic-bezier(.4, 1.4, .5, 1);
+}
+.switch[aria-checked="true"] { background: var(--accent); }
+.switch[aria-checked="true"]::after { transform: translateX(32px); }
+.switch-label { font-weight: 600; color: var(--fg); }
+.switch-label .b { color: var(--warn-ink); }
+.switch-label .a { color: var(--accent-ink); }
+.ba-summary { margin-top: 24px; padding: 20px; border-radius: var(--radius); border: 1px solid var(--line); display: grid; gap: 4px; transition: background .4s; }
+.ba-summary b { font: 800 1.6rem/1.1 var(--font-display); color: var(--fg); }
+.ba-day { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.ba-day li {
+  display: grid; grid-template-columns: 64px 36px minmax(0, 1fr); gap: 12px; align-items: center;
+  padding: 14px 16px; border-radius: 16px; border: 1px solid var(--line); background: var(--bg);
+  transition: background .4s, border-color .4s;
+}
+.ba-day time { font: 600 .85rem/1 var(--font-body); color: var(--muted); font-variant-numeric: tabular-nums; }
+.ba-day .st { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; transition: background .4s, color .4s; }
+.ba-day .txt { position: relative; min-height: 1.6em; }
+.ba-day .txt span { display: block; transition: opacity .35s, transform .35s; }
+.ba-day .txt .after { position: absolute; inset: 0; opacity: 0; transform: translateY(6px); }
+[data-state="before"] .ba-day .st { background: var(--warn-soft); color: var(--warn-ink); }
+[data-state="after"] .ba-day .st { background: var(--surface-2); color: var(--accent-ink); }
+[data-state="after"] .ba-day .txt .before { opacity: 0; transform: translateY(-6px); }
+[data-state="after"] .ba-day .txt .after { opacity: 1; transform: none; }
+[data-state="before"] .ba-summary { background: var(--warn-soft); }
+[data-state="after"] .ba-summary { background: var(--surface-2); }
+[data-state="before"] .st .i-after, [data-state="after"] .st .i-before { display: none; }
+@media (max-width: 860px) { .ba-shell { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .ba-day li { grid-template-columns: 52px 32px minmax(0, 1fr); gap: 10px; padding: 12px; } .ba-day .st { width: 32px; height: 32px; } }
+
+/* ---------- process ---------- */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; list-style: none; padding: 0; margin: 0; counter-reset: s; position: relative; }
+.step { position: relative; display: grid; gap: 10px; align-content: start; padding: 24px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+.step .num { font: 800 .8rem/1 var(--font-body); letter-spacing: .14em; color: var(--accent-ink); }
+.step h3 { font-size: 1.3rem; }
+.step p { font-size: .95rem; }
+.timeline-note { margin-top: 24px; display: flex; gap: 12px; align-items: flex-start; padding: 16px 20px; border-radius: 16px; background: var(--surface-2); color: var(--fg); }
+.timeline-note .icon { color: var(--accent-ink); margin-top: 2px; }
+.timeline-note small { color: var(--muted); display: block; }
+@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+/* ---------- ROI ---------- */
+.roi { background: var(--surface-2); }
+.roi-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); border-radius: 28px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow); }
+.roi-inputs { padding: clamp(20px, 4vw, 40px); display: grid; gap: 22px; align-content: start; }
+.field { display: grid; gap: 8px; }
+.field-top { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.field label { font-weight: 600; color: var(--fg); font-size: .95rem; }
+.field output { font: 700 1rem/1 var(--font-display); color: var(--accent-ink); font-variant-numeric: tabular-nums; }
+input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 28px; background: transparent; cursor: pointer; }
+input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 6px; background: linear-gradient(to right, var(--accent) var(--p, 50%), var(--line) var(--p, 50%)); }
+input[type="range"]::-moz-range-track { height: 6px; border-radius: 6px; background: var(--line); }
+input[type="range"]::-moz-range-progress { height: 6px; border-radius: 6px; background: var(--accent); }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--surface); border: 3px solid var(--accent); margin-top: -8px; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--surface); border: 3px solid var(--accent); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
+.seg button { border: 0; background: transparent; color: var(--text); font: 600 .85rem/1 var(--font-body); padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+.roi-out { background: var(--navy); color: #F2FBFA; padding: clamp(20px, 4vw, 40px); display: grid; gap: 18px; align-content: start; position: relative; overflow: hidden; }
+.roi-out::before { content: ""; position: absolute; right: -30%; top: -30%; width: 80%; aspect-ratio: 1; background: radial-gradient(closest-side, rgba(15,181,166,.35), transparent); }
+.roi-out > * { position: relative; }
+.roi-out .eyebrow { color: #7FE9DE; }
+.roi-out .eyebrow::before { background: var(--teal); }
+.roi-metric { display: grid; gap: 2px; padding-bottom: 16px; border-bottom: 1px solid rgba(242,251,250,.12); }
+.roi-metric b { font: 800 clamp(2rem, 1.6rem + 1.6vw, 2.8rem)/1.05 var(--font-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: #F2FBFA; }
+.roi-metric span { color: #AFC3D6; font-size: .92rem; }
+.roi-metric.big b { color: var(--teal); font-size: clamp(2.6rem, 2rem + 2.4vw, 3.8rem); }
+.roi-out details { color: #C9D7E4; font-size: .88rem; }
+.roi-out summary { cursor: pointer; font-weight: 600; color: #F2FBFA; }
+.roi-out details ul { padding-left: 18px; margin: 10px 0 0; display: grid; gap: 6px; }
+.roi-out .btn-primary { justify-self: start; }
+@media (max-width: 860px) { .roi-card { grid-template-columns: 1fr; } }
+
+/* ---------- quiz ---------- */
+.quiz-card { max-width: 860px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 4vw, 40px); box-shadow: var(--shadow); }
+.quiz-progress { display: flex; gap: 6px; margin-bottom: 22px; }
+.quiz-progress i { flex: 1; height: 5px; border-radius: 5px; background: var(--line); transition: background .3s; }
+.quiz-progress i.on { background: var(--accent); }
+.quiz-q h3 { font-size: clamp(1.2rem, 1.05rem + .6vw, 1.5rem); margin-bottom: 18px; }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.opt {
+  display: flex; align-items: center; gap: 12px; text-align: left; padding: 14px 16px; border-radius: 14px;
+  border: 1.5px solid var(--line); background: var(--bg); color: var(--fg); font: 500 .95rem/1.3 var(--font-body); cursor: pointer;
+  transition: border-color .2s, background .2s, transform .2s;
+}
+.opt:hover { border-color: var(--accent); transform: translateY(-2px); }
+.opt .icon { color: var(--accent-ink); }
+.quiz-nav { display: flex; justify-content: space-between; margin-top: 20px; gap: 12px; }
+.linkish { background: none; border: 0; color: var(--accent-ink); font: 600 .92rem var(--font-body); cursor: pointer; padding: 8px 0; }
+.recs { display: grid; gap: 10px; margin: 18px 0 24px; list-style: none; padding: 0; }
+.recs li { display: grid; grid-template-columns: 46px 1fr; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 16px; background: var(--surface-2); }
+.recs .ico { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: var(--surface); color: var(--accent-ink); }
+.recs b { color: var(--fg); display: block; font-family: var(--font-display); }
+.recs span { font-size: .9rem; }
+
+/* ---------- serve ---------- */
+.serve-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.serve { display: flex; align-items: center; gap: 14px; padding: 18px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); font-weight: 600; color: var(--fg); }
+.serve .ico { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: var(--surface-2); color: var(--accent-ink); flex: none; }
+.serve.ask { border-style: dashed; background: transparent; text-decoration: none; }
+.serve.ask:hover { border-color: var(--accent); }
+@media (max-width: 860px) { .serve-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .serve-grid { grid-template-columns: 1fr; } }
+
+.tools { margin-top: 48px; display: grid; gap: 14px; }
+.tools p { color: var(--muted); font-size: .9rem; text-align: center; }
+.tool-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.tool-strip li { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-weight: 600; font-size: .88rem; color: var(--fg); }
+
+/* ---------- security ---------- */
+.sec { background: var(--hero-bg); color: var(--hero-fg); }
+.sec h2 { color: var(--hero-fg); }
+.sec .lede { color: var(--hero-muted); }
+.sec .eyebrow { color: #7FE9DE; }
+.sec-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.sec-item { padding: 22px; border-radius: var(--radius); border: 1px solid var(--hero-line); background: rgba(255, 255, 255, .03); display: grid; gap: 10px; align-content: start; }
+.sec-item .icon { color: var(--teal); width: 26px; height: 26px; }
+.sec-item h3 { color: var(--hero-fg); }
+.sec-item p { color: var(--hero-muted); font-size: .93rem; }
+.sec-fine { margin-top: 24px; color: var(--hero-muted); font-size: .85rem; max-width: 80ch; }
+@media (max-width: 860px) { .sec-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .sec-grid { grid-template-columns: 1fr; } }
+
+/* ---------- founder ---------- */
+.founder-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.portrait { position: relative; max-width: 420px; justify-self: center; width: 100%; }
+.portrait-frame {
+  position: relative; aspect-ratio: 4 / 5; border-radius: 32px; overflow: hidden; max-width: 100%;
+  box-shadow: 0 0 0 6px var(--bg), 0 0 0 8px var(--accent), 0 30px 60px -20px rgba(15, 181, 166, .55);
+  background: linear-gradient(160deg, var(--navy), #0f4a5a);
+}
+.portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; display: block; }
+.portrait-frame .initials { position: absolute; inset: 0; display: grid; place-items: center; font: 800 5rem var(--font-display); color: #F2FBFA; z-index: -1; }
+.portrait-tag {
+  position: absolute; left: -12px; bottom: 28px; padding: 12px 16px; border-radius: 16px; max-width: calc(100% - 24px);
+  background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--line); box-shadow: var(--shadow);
+}
+.portrait-tag b { display: block; color: var(--fg); font-family: var(--font-display); }
+.portrait-tag span { font-size: .85rem; color: var(--muted); }
+.letter { display: grid; gap: 18px; }
+.letter p { font-size: 1.05rem; max-width: 62ch; }
+.letter .sig { font: 700 1.5rem/1.2 var(--font-display); color: var(--fg); letter-spacing: -0.01em; }
+.letter .sig small { display: block; font: 500 .9rem var(--font-body); color: var(--muted); letter-spacing: 0; margin-top: 4px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.chips li { padding: 7px 12px; border-radius: 999px; background: var(--surface-2); color: var(--fg); font-size: .85rem; font-weight: 600; }
+.letter-ctas { display: flex; flex-wrap: wrap; gap: 10px; }
+@media (max-width: 860px) {
+  .founder-grid { grid-template-columns: 1fr; }
+  .portrait { max-width: 340px; }
+  .portrait-tag { left: 12px; }
+}
+
+/* ---------- testimonials ---------- */
+.tst { background: var(--surface-2); }
+.tst-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.tst-card { padding: 26px; border-radius: var(--radius); border: 1.5px dashed color-mix(in srgb, var(--accent) 45%, var(--line)); background: var(--surface); display: grid; gap: 14px; align-content: start; }
+.tst-card .q { font: 800 3rem/0.6 var(--font-display); color: var(--accent); height: 22px; }
+.tst-card p { color: var(--muted); }
+.tst-card .who { display: flex; gap: 12px; align-items: center; }
+.tst-card .av { width: 40px; height: 40px; border-radius: 50%; background: var(--surface-2); border: 1px dashed var(--accent); }
+.tst-card .who span { font-size: .85rem; color: var(--muted); }
+.tst-cta { margin-top: 28px; text-align: center; display: grid; justify-items: center; gap: 14px; }
+@media (max-width: 860px) { .tst-grid { grid-template-columns: 1fr; } }
+
+/* ---------- FAQ ---------- */
+.faq-list { max-width: 860px; margin: 0 auto; display: grid; gap: 10px; }
+.faq-list details { border-radius: 16px; border: 1px solid var(--line); background: var(--surface); transition: border-color .2s; }
+.faq-list details[open] { border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); }
+.faq-list summary { list-style: none; cursor: pointer; padding: 18px 20px; display: flex; justify-content: space-between; gap: 16px; align-items: center; font: 700 1.02rem/1.4 var(--font-display); color: var(--fg); }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary .pm { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); color: var(--accent-ink); flex: none; transition: transform .25s; }
+.faq-list details[open] summary .pm { transform: rotate(45deg); }
+.faq-list .ans { padding: 0 20px 20px; max-width: 70ch; }
+
+/* ---------- final CTA ---------- */
+.final { padding-block: clamp(56px, 8vw, 96px); }
+.final-card {
+  position: relative; overflow: hidden; border-radius: 32px; padding: clamp(32px, 6vw, 72px);
+  background: linear-gradient(130deg, #0B1F3A 0%, #0B3A4C 55%, #0F7F77 100%); color: #F2FBFA; display: grid; gap: 20px; justify-items: start;
+}
+.final-card h2 { color: #F2FBFA; max-width: 20ch; }
+.final-card p { color: #C9DCE6; max-width: 56ch; }
+.final-card .divider { position: absolute; left: 0; right: 0; bottom: 18px; color: var(--teal); opacity: .35; height: 40px; }
+.final-actions { display: flex; flex-wrap: wrap; gap: 12px; position: relative; }
+
+/* ---------- footer ---------- */
+footer { border-top: 1px solid var(--line); background: var(--surface); padding-block: 56px 32px; }
+.foot-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, .8fr) minmax(0, 1.2fr); gap: 32px; }
+.foot-grid h4 { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; font-family: var(--font-body); font-weight: 600; }
+.foot-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.foot-grid a { color: var(--text); text-decoration: none; }
+.foot-grid a:hover { color: var(--accent-ink); }
+.contact-line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.contact-line .icon { color: var(--accent-ink); width: 18px; height: 18px; }
+.copy-btn { border: 1px solid var(--line); background: var(--bg); color: var(--fg); font: 600 .75rem var(--font-body); padding: 4px 10px; border-radius: 999px; cursor: pointer; }
+.foot-bottom { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; font-size: .85rem; color: var(--muted); }
+@media (max-width: 860px) { .foot-grid { grid-template-columns: 1fr; } }
+
+/* ---------- chat widget ---------- */
+.chat-fab {
+  position: fixed; z-index: 70;
+  right: calc(20px + env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  display: inline-flex; align-items: center; gap: 10px; padding: 0 18px 0 14px; height: 54px; border-radius: 999px; border: 0; cursor: pointer;
+  background: var(--navy); color: #F2FBFA; font: 600 .95rem var(--font-body); box-shadow: 0 14px 30px -10px rgba(11, 31, 58, .6);
+}
+:root[data-theme="dark"] .chat-fab { background: var(--accent); color: var(--on-accent); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chat-fab { background: var(--accent); color: var(--on-accent); } }
+.chat-fab .dot { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--teal); color: var(--navy); }
+.chat-panel {
+  position: fixed; z-index: 71;
+  right: calc(20px + env(safe-area-inset-right, 0px)); bottom: calc(86px + env(safe-area-inset-bottom, 0px));
+  width: min(380px, calc(100vw - 32px)); max-height: min(560px, calc(100vh - 140px));
+  display: flex; flex-direction: column; border-radius: 22px; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--line); box-shadow: 0 30px 60px -20px rgba(11, 31, 58, .45);
+}
+.chat-head { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--navy); color: #F2FBFA; }
+.chat-head .av { width: 36px; height: 36px; border-radius: 12px; background: var(--teal); color: var(--navy); display: grid; place-items: center; }
+.chat-head b { display: block; font-family: var(--font-display); }
+.chat-head small { color: #AFC3D6; }
+.demo-pill { margin-left: auto; font: 700 .68rem/1 var(--font-body); letter-spacing: .14em; padding: 6px 8px; border-radius: 6px; background: var(--coral); color: #2A0A0A; }
+.chat-close { background: transparent; border: 0; color: #F2FBFA; cursor: pointer; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; }
+.chat-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: var(--bg); min-height: 260px; }
+.msg { max-width: 85%; padding: 10px 14px; border-radius: 16px; font-size: .92rem; line-height: 1.45; animation: pop .3s ease both; }
+.msg.bot { background: var(--surface); border: 1px solid var(--line); color: var(--fg); border-bottom-left-radius: 4px; }
+.msg.user { align-self: flex-end; background: var(--accent); color: var(--on-accent); border-bottom-right-radius: 4px; }
+.msg.sys { align-self: center; max-width: 100%; background: var(--surface-2); color: var(--accent-ink); font-size: .8rem; font-weight: 600; text-align: center; border-radius: 10px; }
+.msg.typing { display: inline-flex; gap: 4px; }
+.msg.typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: blink 1s infinite; }
+.msg.typing i:nth-child(2) { animation-delay: .15s; } .msg.typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes blink { 50% { opacity: .25; } }
+@keyframes pop { from { opacity: 0; transform: translateY(6px); } }
+.chat-foot { padding: 12px 16px; border-top: 1px solid var(--line); display: flex; gap: 8px; align-items: center; justify-content: space-between; background: var(--surface); }
+.chat-foot small { color: var(--muted); font-size: .78rem; }
+
+/* ---------- mobile bottom bar ---------- */
+.mbar { display: none; }
+@media (max-width: 720px) {
+  .mbar {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 65;
+    padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+    background: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--line);
+  }
+  .mbar .btn { min-height: 46px; padding: 0 12px; }
+  body { padding-bottom: 76px; }
+  .chat-fab { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); height: 50px; padding: 0 10px; }
+  .chat-fab .lbl { display: none; }
+  .chat-panel { bottom: calc(146px + env(safe-area-inset-bottom, 0px)); max-height: calc(100vh - 220px); }
+}
+
+/* ---------- reveal (content is visible at rest; JS only animates items below the fold) ---------- */
+.pre { opacity: 0; transform: translateY(18px); }
+.reveal { transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .pre { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ================= ICON SPRITE ================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></symbol>
+    <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4.5V3h6v1.5M9 10h6M9 14h6M9 18h3"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9 15l2 2 4-4"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19c0 1.5-2 2.5-5 2.5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></symbol>
+    <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6.5 8h11v3a5.5 5.5 0 0 1-11 0zM12 16.5V21"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9.5 3h5M10 3v6L4.8 18.2A2 2 0 0 0 6.5 21h11a2 2 0 0 0 1.7-2.8L14 9V3"/><path d="M7.5 15h9"/></symbol>
+    <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2.5l3 3-3 3"/><path d="M4 11.5V10a4.5 4.5 0 0 1 4.5-4.5H20M7 21.5l-3-3 3-3"/><path d="M20 12.5V14a4.5 4.5 0 0 1-4.5 4.5H4"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></symbol>
+    <symbol id="i-badge" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"/><circle cx="9.5" cy="11" r="2"/><path d="M6.5 16.5c.6-1.5 1.7-2.2 3-2.2s2.4.7 3 2.2M14.5 10h3M14.5 13h3M10 3h4v3h-4z"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8 15l3.5-4 3 2.5L19 8"/></symbol>
+    <symbol id="i-hospital" viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M2.5 21h19"/><path d="M12 8v5M9.5 10.5h5M9.5 21v-4h5v4"/></symbol>
+    <symbol id="i-stethoscope" viewBox="0 0 24 24"><path d="M6 3v5a4 4 0 0 0 8 0V3"/><path d="M10 12v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="10" r="2"/></symbol>
+    <symbol id="i-tooth" viewBox="0 0 24 24"><path d="M12 5.5c-2-1.8-6.5-2.3-7.5 1.5-.8 3 1 5 1.5 8 .4 2.7 1 5.5 2.4 5.5 1.6 0 1.4-5 3.6-5s2 5 3.6 5c1.4 0 2-2.8 2.4-5.5.5-3 2.3-5 1.5-8-1-3.8-5.5-3.3-7.5-1.5z"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3"/></symbol>
+    <symbol id="i-pill" viewBox="0 0 24 24"><rect x="2.8" y="8.2" width="18.4" height="7.6" rx="3.8" transform="rotate(-45 12 12)"/><path d="M9.3 9.3l5.4 5.4"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M10.5 21v-3h3v3"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-msg" viewBox="0 0 24 24"><path d="M4 5.5h16v10.5H9l-5 4z"/><path d="M8 10h8"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.2-4A8 8 0 1 1 8.3 19z"/><path d="M9 9.2c.3 2.5 2.3 4.6 5 5.2l1.2-1.3-2-1-.8.8c-.9-.4-1.6-1.1-2-2l.8-.8-1-2z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></symbol>
+    <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3.5"/><path d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-6M11.5 13c0-1.5 1-2.5 2.3-2.5s2.2.9 2.2 2.5v3.5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3.5h3.5l1.5 4.5-2 1.5a11 11 0 0 0 6.5 6.5l1.5-2 4.5 1.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5.5a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5M12 14.5v2"/></symbol>
+    <symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6 10h.01M9.5 10h.01M13 10h.01M16.5 10h.01M7 14h10"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.5"/><path d="M2.5 20c.8-3.5 3.3-5.5 6.5-5.5s5.7 2 6.5 5.5M16 5.2a3.5 3.5 0 0 1 0 6.6M18.5 14.8c1.5.8 2.6 2.5 3 5.2"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5l9.5 16.5h-19z"/><path d="M12 10v4.5M12 17.5v.01"/></symbol>
+    <symbol id="i-sheet" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M3.5 15h17M9.5 4v16"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></symbol>
+  </defs>
+</svg>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="logo" href="#top" aria-label="CareRoute Automation home">
+        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="11" fill="#0B1F3A"/>
+          <path d="M6 23h7l3-8 4.5 14 3-9H34" fill="none" stroke="#0FB5A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="34" cy="20" r="2.6" fill="#F2FBFA"/>
+        </svg>
+        <span>Care<span class="route">Route</span><small>Automation</small></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#roi">ROI</a></li>
+        <li><a href="#founder">Founder</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch light or dark theme">
+          <svg class="icon sun"><use href="#i-sun"/></svg><svg class="icon moon"><use href="#i-moon"/></svg>
+        </button>
+        <a class="btn btn-primary btn-sm js-book magnetic" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener">Book a Free Consultation</a>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg class="icon"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-nav" id="mobileNav">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#roi">ROI calculator</a></li>
+        <li><a href="#founder">Founder</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a class="btn btn-primary js-book" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener">Book a Free Consultation</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" style="color:#7FE9DE">Healthcare workflow &amp; AI automation</span>
+        <h1 id="hero-h" style="margin-top:18px">Automate the admin. <em>Elevate the care.</em></h1>
+        <p class="lede">CareRoute Automation builds AI and workflow automation for clinics, hospitals, labs and billing teams. Every patient, appointment, claim and report moves to the right place on its own, so your staff spend their day on patients, not paperwork.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary js-book magnetic" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener">Book Free Automation Audit <svg class="icon"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost btn-on-dark" href="#how">See how it works</a>
+        </div>
+        <ul class="badges" aria-label="Why teams trust us">
+          <li><svg class="icon"><use href="#i-shield"/></svg>HIPAA-aware workflows</li>
+          <li><svg class="icon"><use href="#i-lock"/></svg>GDPR-aware by design</li>
+          <li><svg class="icon"><use href="#i-stethoscope"/></svg>Built by a healthcare insider</li>
+          <li><svg class="icon"><use href="#i-users"/></svg>No technical staff needed</li>
+        </ul>
+      </div>
+      <div class="hero-aside">
+        <p class="promise">Less paperwork.<br>More patient care.</p>
+        <p>We map the route each patient and task takes through your practice, then automate the repetitive steps along it: the calls, the reminders, the copying between systems, the chasing.</p>
+      </div>
+    </div>
+
+    <div class="route-card" aria-label="Live care route animation">
+      <div class="route-top">
+        <span class="route-title"><span class="live-dot" aria-hidden="true"></span>A patient's care route, automated</span>
+        <span class="route-status" id="routeStatus" aria-live="polite"><svg class="icon" style="width:16px;height:16px;color:#0FB5A6"><use href="#i-check"/></svg><span>Review request delivered ✓</span></span>
+      </div>
+      <div class="route-scroll">
+        <svg class="route-svg" id="routeSvg" viewBox="0 0 1000 240" role="img" aria-label="Route from Enquiry to Booking, Reminder, Check-in, Visit, Billing, Follow-up and Review">
+          <path class="base" id="routeBase" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="live" id="routeLive" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <g id="routeNodes"></g>
+        </svg>
+      </div>
+      <p class="route-note">Each step runs on its own. Your team only steps in when a person is needed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats" aria-label="CareRoute at a glance">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat"><b><span class="count" data-to="12">12</span></b><span>automation services for healthcare</span></div>
+      <div class="stat"><b><span class="count" data-to="24">24</span>/7</b><span>AI assistant coverage for patient queries</span></div>
+      <div class="stat"><b><span class="count" data-to="8">8</span></b><span>steps of the care route we automate</span></div>
+      <div class="stat"><b>2–4</b><span>weeks to a first live workflow (typical)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROBLEM ================= -->
+<section class="section" aria-labelledby="pain-h">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The problem</span>
+      <h2 id="pain-h">Your team didn't go into healthcare to do data entry.</h2>
+      <p class="lede">Yet most clinics lose hours every day to work a system could do. Patients feel it in waiting times. Staff feel it as burnout.</p>
+    </div>
+    <div class="pain-grid">
+      <article class="pain reveal">
+        <span class="ico"><svg class="icon"><use href="#i-phone"/></svg></span>
+        <h3>Phones that never stop</h3>
+        <p>Your front desk answers the same questions all day, while patients at the counter wait.</p>
+      </article>
+      <article class="pain reveal">
+        <span class="ico"><svg class="icon"><use href="#i-calendar"/></svg></span>
+        <h3>Empty slots from no-shows</h3>
+        <p>Forgotten appointments cost revenue and push other patients further down the waitlist.</p>
+      </article>
+      <article class="pain reveal">
+        <span class="ico"><svg class="icon"><use href="#i-receipt"/></svg></span>
+        <h3>Slow insurance and denied claims</h3>
+        <p>Eligibility checks, prior authorisations and denial follow-ups hold up payments for weeks.</p>
+      </article>
+      <article class="pain reveal">
+        <span class="ico"><svg class="icon"><use href="#i-keyboard"/></svg></span>
+        <h3>The same data, typed three times</h3>
+        <p>Patient details copied between forms, EHR, billing and spreadsheets. Leads go cold. Reports never get made.</p>
+      </article>
+    </div>
+    <div class="after-note">
+      <span>Sound familiar? There is a simpler route.</span>
+      <a class="btn btn-ghost btn-sm" href="#why">See what CareRoute means <svg class="icon" style="width:16px;height:16px"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<svg class="divider" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 14h540l10-8 8 8 10-12 12 22 10-10h610" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+
+<!-- ================= WHY CAREROUTE ================= -->
+<section class="section why" id="why" aria-labelledby="why-h">
+  <div class="wrap why-grid">
+    <div class="why-copy">
+      <span class="eyebrow">Why "CareRoute"?</span>
+      <h2 id="why-h">Two words. One promise.</h2>
+      <blockquote>"We automatically route every patient, task and piece of data to the right place, at the right time, with no manual effort."</blockquote>
+      <p class="lede">So healthcare teams spend their time on care, not admin. That is the whole idea behind the name, and the test every automation we build has to pass.</p>
+      <div><a class="btn btn-primary js-book magnetic" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener">Map my care route <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+    </div>
+    <div class="word-split">
+      <div class="word reveal"><b>Care</b><p>Everything a healthcare business exists to deliver: patients, compassion, outcomes.</p></div>
+      <div class="word route-w reveal"><b>Route</b><p>The path every patient, appointment, claim, message, report and task takes through your clinic or hospital.</p></div>
+      <div class="equation reveal">Care + Route + Automation = <span>less paperwork, more patient care.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="section" id="services" aria-labelledby="svc-h">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Every patient, on the right route</span>
+      <h2 id="svc-h">Twelve ways we give your team time back</h2>
+      <p class="lede">Start with the one that hurts most. Each service works on its own and connects to the others as you grow.</p>
+    </div>
+    <div class="svc-grid" id="svcGrid"></div>
+    <div class="after-note" style="justify-content:center">
+      <span>Not sure where to start?</span>
+      <a class="btn btn-ghost btn-sm" href="#quiz">Take the 30-second quiz <svg class="icon" style="width:16px;height:16px"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BEFORE / AFTER ================= -->
+<section class="section ba" aria-labelledby="ba-h">
+  <div class="wrap ba-shell" id="baShell" data-state="before">
+    <div>
+      <span class="eyebrow">A clinic's day</span>
+      <h2 id="ba-h" style="margin-top:14px">Before and after CareRoute</h2>
+      <p class="lede" style="margin-top:14px">Flip the switch to see the same day with the admin handled automatically.</p>
+      <div class="switch-row">
+        <button class="switch" id="baSwitch" role="switch" aria-checked="false" aria-labelledby="baSwitchLbl" type="button"></button>
+        <span class="switch-label" id="baSwitchLbl">Showing: <span class="b" id="baWord">Before CareRoute</span></span>
+      </div>
+      <div class="ba-summary" aria-live="polite">
+        <span id="baSumLabel" style="font-size:.9rem;color:var(--muted)">Front desk time on manual admin</span>
+        <b id="baSum">About 3 hrs of data entry a day</b>
+      </div>
+    </div>
+    <ol class="ba-day">
+      <li><time>08:30</time><span class="st"><svg class="icon i-before"><use href="#i-phone"/></svg><svg class="icon i-after"><use href="#i-check"/></svg></span><span class="txt"><span class="before">Phones ring. Staff book appointments by hand into a register.</span><span class="after">Patients book online or on WhatsApp. Slots fill the calendar automatically.</span></span></li>
+      <li><time>09:15</time><span class="st"><svg class="icon i-before"><use href="#i-clipboard"/></svg><svg class="icon i-after"><use href="#i-check"/></svg></span><span class="txt"><span class="before">Patients fill paper forms at the desk. Staff retype them into the EHR.</span><span class="after">Digital intake arrives before the visit and lands in the EHR on its own.</span></span></li>
+      <li><time>11:00</time><span class="st"><svg class="icon i-before"><use href="#i-shield"/></svg><svg class="icon i-after"><use href="#i-check"/></svg></span><span class="txt"><span class="before">Someone calls insurers to check eligibility, on hold for 20 minutes.</span><span class="after">Eligibility is checked automatically the day before. Issues are flagged early.</span></span></li>
+      <li><time>14:00</time><span class="st"><svg class="icon i-before"><use href="#i-alert"/></svg><svg class="icon i-after"><use href="#i-check"/></svg></span><span class="txt"><span class="before">Two no-shows. Nobody had time to send reminders.</span><span class="after">Reminders went out by WhatsApp and SMS. Cancelled slots offered to the waitlist.</span></span></li>
+      <li><time>16:30</time><span class="st"><svg class="icon i-before"><use href="#i-receipt"/></svg><svg class="icon i-after"><use href="#i-check"/></svg></span><span class="txt"><span class="before">Claims pile up. A denied one from last month is still unanswered.</span><span class="after">Claims are checked before submission. Denials create a follow-up task instantly.</span></span></li>
+      <li><time>18:00</time><span class="st"><svg class="icon i-before"><use href="#i-sheet"/></svg><svg class="icon i-after"><use href="#i-check"/></svg></span><span class="txt"><span class="before">The owner asks for today's numbers. Someone opens three spreadsheets.</span><span class="after">A live dashboard shows bookings, revenue and follow-ups. Done automatically.</span></span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= HOW WE WORK ================= -->
+<section class="section" id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How we work</span>
+      <h2 id="how-h">Four steps from chaos to a clear route</h2>
+      <p class="lede">You keep running your practice. We do the mapping, building and testing around you.</p>
+    </div>
+    <ol class="steps">
+      <li class="step reveal"><span class="num">STEP 1</span><h3>Discover</h3><p>A free audit call. We learn how your clinic runs today and where time and revenue leak.</p></li>
+      <li class="step reveal"><span class="num">STEP 2</span><h3>Map the Route</h3><p>We draw your patient and task journey step by step and pick the automations with the biggest payoff.</p></li>
+      <li class="step reveal"><span class="num">STEP 3</span><h3>Automate</h3><p>We build, connect and test the workflows with your real tools, then train your team to use them.</p></li>
+      <li class="step reveal"><span class="num">STEP 4</span><h3>Optimize</h3><p>We monitor results, fix what slows down and add the next workflow when you're ready.</p></li>
+    </ol>
+    <div class="timeline-note">
+      <svg class="icon"><use href="#i-clock"/></svg>
+      <div><b>Most clinics go live with a first workflow in 2–4 weeks.</b><small>Typical timeline, not a guarantee. Larger EHR or billing integrations can take longer; we agree dates with you before we start.</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROI ================= -->
+<section class="section roi" id="roi" aria-labelledby="roi-h">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">ROI calculator</span>
+      <h2 id="roi-h">Give your staff their hours back</h2>
+      <p class="lede">Move the sliders to match your practice. You'll see a conservative estimate of what automation could return each month.</p>
+    </div>
+    <div class="roi-card">
+      <form class="roi-inputs" id="roiForm" onsubmit="return false">
+        <div class="field-top">
+          <span style="font-weight:600;color:var(--fg)">Currency</span>
+          <div class="seg" role="group" aria-label="Currency">
+            <button type="button" data-cur="INR" aria-pressed="true">₹ INR</button>
+            <button type="button" data-cur="USD" aria-pressed="false">$ USD</button>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-top"><label for="rPatients">Patients per day</label><output for="rPatients" id="oPatients">40</output></div>
+          <input type="range" id="rPatients" min="5" max="300" step="5" value="40">
+        </div>
+        <div class="field">
+          <div class="field-top"><label for="rStaff">Staff working on admin</label><output for="rStaff" id="oStaff">3</output></div>
+          <input type="range" id="rStaff" min="1" max="20" step="1" value="3">
+        </div>
+        <div class="field">
+          <div class="field-top"><label for="rNoshow">No-show rate</label><output for="rNoshow" id="oNoshow">15%</output></div>
+          <input type="range" id="rNoshow" min="0" max="40" step="1" value="15">
+        </div>
+        <div class="field">
+          <div class="field-top"><label for="rValue">Average visit value</label><output for="rValue" id="oValue">₹800</output></div>
+          <input type="range" id="rValue" min="200" max="5000" step="50" value="800">
+        </div>
+      </form>
+      <div class="roi-out" aria-live="polite">
+        <span class="eyebrow">Estimated every month</span>
+        <div class="roi-metric big"><b id="mHours">0</b><span>staff hours given back</span></div>
+        <div class="roi-metric"><b id="mRevenue">0</b><span>revenue recovered from fewer no-shows</span></div>
+        <div class="roi-metric"><b id="mCost">0</b><span>admin cost saved</span></div>
+        <details>
+          <summary>How we calculate this</summary>
+          <ul>
+            <li>24 working days a month.</li>
+            <li>Hours saved: 4 minutes of admin saved per patient, capped at 40% of your admin staff's time (8-hour days).</li>
+            <li>No-shows: automated reminders prevent 30% of your current no-shows; each recovered visit is worth your average visit value.</li>
+            <li>Admin cost: hours saved × <span id="rateNote">₹200</span> per staff hour.</li>
+            <li>These are estimates for planning, not a guarantee. Your audit gives real numbers.</li>
+          </ul>
+        </details>
+        <a class="btn btn-primary js-book magnetic" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener">Get your personalised automation plan <svg class="icon"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="section" id="quiz" aria-labelledby="quiz-h">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Find your automation</span>
+      <h2 id="quiz-h">Three questions. Your top three automations.</h2>
+      <p class="lede">Takes about 30 seconds. No email needed.</p>
+    </div>
+    <div class="quiz-card" id="quizCard" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ================= WHO WE SERVE ================= -->
+<section class="section" style="padding-top:0" aria-labelledby="serve-h">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Who we serve</span>
+      <h2 id="serve-h">Built for every kind of care team</h2>
+    </div>
+    <div class="serve-grid">
+      <div class="serve"><span class="ico"><svg class="icon"><use href="#i-stethoscope"/></svg></span>Clinics &amp; practices</div>
+      <div class="serve"><span class="ico"><svg class="icon"><use href="#i-hospital"/></svg></span>Hospitals</div>
+      <div class="serve"><span class="ico"><svg class="icon"><use href="#i-flask"/></svg></span>Diagnostic labs</div>
+      <div class="serve"><span class="ico"><svg class="icon"><use href="#i-tooth"/></svg></span>Dental &amp; specialty</div>
+      <div class="serve"><span class="ico"><svg class="icon"><use href="#i-video"/></svg></span>Telehealth startups</div>
+      <div class="serve"><span class="ico"><svg class="icon"><use href="#i-pill"/></svg></span>Pharmacies</div>
+      <div class="serve"><span class="ico"><svg class="icon"><use href="#i-building"/></svg></span>Medical billing companies</div>
+      <a class="serve ask js-wa" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener"><span class="ico"><svg class="icon"><use href="#i-msg"/></svg></span>Not listed? Ask us</a>
+    </div>
+    <div class="tools">
+      <p>Works with the tools you already use</p>
+      <ul class="tool-strip">
+        <li>EHR / EMR</li><li>Practice management</li><li>WhatsApp</li><li>SMS &amp; Email</li><li>Google Workspace</li><li>Zapier</li><li>n8n</li><li>Make</li><li>CRM</li><li>Calendars</li><li>Payment gateways</li><li>Custom APIs</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECURITY ================= -->
+<section class="section sec" aria-labelledby="sec-h">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Security &amp; compliance</span>
+      <h2 id="sec-h">Privacy-first by design</h2>
+      <p class="lede">Patient trust is the job. Every workflow we build follows HIPAA-aware and GDPR-aware practices from day one.</p>
+    </div>
+    <div class="sec-grid">
+      <div class="sec-item"><svg class="icon"><use href="#i-eye"/></svg><h3>Data minimisation</h3><p>Each workflow touches only the data it needs, and nothing more is stored.</p></div>
+      <div class="sec-item"><svg class="icon"><use href="#i-lock"/></svg><h3>Encryption in transit</h3><p>Data moving between your systems travels over encrypted connections.</p></div>
+      <div class="sec-item"><svg class="icon"><use href="#i-users"/></svg><h3>Role-based access</h3><p>Staff see what their role needs. Admin access stays with the people you choose.</p></div>
+      <div class="sec-item"><svg class="icon"><use href="#i-file"/></svg><h3>Audit trails</h3><p>Automated actions are logged so you can see what happened, when and why.</p></div>
+      <div class="sec-item"><svg class="icon"><use href="#i-shield"/></svg><h3>NDAs &amp; BAAs</h3><p>We sign NDAs, and Business Associate Agreements where your regulations require them.</p></div>
+      <div class="sec-item"><svg class="icon"><use href="#i-users"/></svg><h3>Human in the loop</h3><p>Clinical decisions stay with clinicians. Automation handles admin, never diagnosis.</p></div>
+    </div>
+    <p class="sec-fine">HIPAA-aware and GDPR-aware describe how we design workflows. CareRoute Automation does not claim third-party certification; your compliance obligations remain your organisation's, and we work with your team to meet them.</p>
+  </div>
+</section>
+
+<!-- ================= FOUNDER ================= -->
+<section class="section" id="founder" aria-labelledby="founder-h">
+  <div class="wrap founder-grid">
+    <div class="portrait">
+      <div class="portrait-frame">
+        <span class="initials" aria-hidden="true">SD</span>
+        <img src="saurabh-dubey.webp" alt="Saurabh Dubey, Founder and CEO of CareRoute Automation, in a grey blazer in an office" width="1536" height="1024" loading="lazy">
+      </div>
+      <div class="portrait-tag"><b>Saurabh Dubey</b><span>Founder &amp; CEO · Mohali, Chandigarh</span></div>
+    </div>
+    <div class="letter">
+      <span class="eyebrow">A note from the founder</span>
+      <h2 id="founder-h">I've seen the admin from the inside.</h2>
+      <p>Before CareRoute, I spent three years in the pharmaceutical and healthcare field, including work as a medical coder at Knack RCM. Up close, I saw how much skilled time goes into copying data, chasing approvals and answering the same questions again and again.</p>
+      <p>I started CareRoute Automation to fix that route. We map how work really moves through your practice, then automate the repetitive steps, so your team gets their hours back for patients.</p>
+      <p>I also teach healthcare teams how to use AI responsibly. That means the automation we build is something your staff understand and trust, not a black box.</p>
+      <p>If your team is buried in admin, let's talk. I'll look at your workflow personally and show you where the hours are going.</p>
+      <p class="sig">Saurabh Dubey, Founder<small>Healthcare AI Educator · Digital Healthcare Leadership · Consultant</small></p>
+      <ul class="chips">
+        <li>3 years in pharma &amp; healthcare</li>
+        <li>Ex-Medical Coder, Knack RCM</li>
+        <li>Healthcare AI Educator</li>
+        <li>Mohali · Chandigarh</li>
+      </ul>
+      <div class="letter-ctas">
+        <a class="btn btn-primary magnetic" href="https://www.linkedin.com/in/saurabhdubey890" target="_blank" rel="noopener"><svg class="icon"><use href="#i-in"/></svg>Connect on LinkedIn</a>
+        <a class="btn btn-ghost js-book" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener">Talk to Saurabh</a>
+        <a class="btn btn-ghost" href="mailto:carerouteautomation@gmail.com"><svg class="icon"><use href="#i-mail"/></svg>Email CareRoute</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="section tst" aria-labelledby="tst-h">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Client stories</span>
+      <h2 id="tst-h">Our first client stories are being written now</h2>
+      <p class="lede">We publish only real results from real practices. These spaces are reserved for our founding clients.</p>
+    </div>
+    <div class="tst-grid">
+      <article class="tst-card"><span class="q" aria-hidden="true">“</span><p>Client testimonial coming soon.</p><div class="who"><span class="av" aria-hidden="true"></span><span>Founding client · Clinic</span></div></article>
+      <article class="tst-card"><span class="q" aria-hidden="true">“</span><p>Client testimonial coming soon.</p><div class="who"><span class="av" aria-hidden="true"></span><span>Founding client · Diagnostic lab</span></div></article>
+      <article class="tst-card"><span class="q" aria-hidden="true">“</span><p>Client testimonial coming soon.</p><div class="who"><span class="av" aria-hidden="true"></span><span>Founding client · Billing team</span></div></article>
+    </div>
+    <div class="tst-cta">
+      <p>Want your practice to be one of them? Founding clients get hands-on attention from Saurabh.</p>
+      <a class="btn btn-primary js-book magnetic" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener">Become a founding client</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section" id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">FAQ</span>
+      <h2 id="faq-h">Questions clinic owners ask us</h2>
+    </div>
+    <div class="faq-list">
+      <details><summary>How much does automation cost?<span class="pm"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>Every project is quoted after a free automation audit, so you pay only for the workflows you need. Most practices start with one workflow and expand once they see the time saved.</p></div></details>
+      <details><summary>How long until it goes live?<span class="pm"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>A first workflow typically goes live in 2–4 weeks. Larger EHR or billing integrations can take longer. We agree the timeline with you before any work starts.</p></div></details>
+      <details><summary>Is our patient data safe?<span class="pm"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>We design HIPAA-aware and GDPR-aware workflows: we use only the data each step needs, encrypt it in transit, restrict access by role and keep audit trails. We sign NDAs and BAAs where required.</p></div></details>
+      <details><summary>Which systems do you work with?<span class="pm"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>EHR/EMR and practice management software, WhatsApp, SMS, email, Google Workspace, calendars, CRMs, payment gateways and spreadsheets. We connect them with tools like n8n, Zapier and Make, or directly through APIs. If you use something unusual, ask us.</p></div></details>
+      <details><summary>Do I need technical staff?<span class="pm"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>No. We build, test and maintain the automations, and train your team in plain language. Your staff just use the results.</p></div></details>
+      <details><summary>What support do we get after launch?<span class="pm"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>We stay with you after go-live: monitoring, fixes, small changes and regular check-ins to see what to improve next. Support terms are written into your proposal.</p></div></details>
+      <details><summary>What if something breaks?<span class="pm"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>Workflows are built with alerts and a manual fallback, so your clinic never stops. If a step fails, we're notified and your team can carry on by hand until it's fixed.</p></div></details>
+      <details><summary>Can we start small?<span class="pm"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>Yes, and we recommend it. Pick the one task that wastes the most time, such as reminders or intake forms, prove the value, then add more.</p></div></details>
+      <details><summary>Will automation replace my staff?<span class="pm"><svg class="icon" style="width:16px;height:16px"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>No. It removes the repetitive parts of their day so they can focus on patients. Most teams find their work becomes calmer and more meaningful.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="final" aria-labelledby="final-h">
+  <div class="wrap">
+    <div class="final-card">
+      <span class="eyebrow" style="color:#7FE9DE">Ready when you are</span>
+      <h2 id="final-h">Your patients deserve your full attention. Let automation handle the rest.</h2>
+      <p>Book a free automation audit. In one call, we'll show you where your team's hours are going and which automations would give them back first.</p>
+      <div class="final-actions">
+        <a class="btn btn-primary js-book magnetic" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener">Book Free Automation Audit <svg class="icon"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost btn-on-dark js-wa" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener"><svg class="icon"><use href="#i-wa"/></svg>Chat on WhatsApp</a>
+        <a class="btn btn-ghost btn-on-dark" href="mailto:carerouteautomation@gmail.com?subject=Automation%20audit%20for%20my%20practice"><svg class="icon"><use href="#i-mail"/></svg>Email us</a>
+      </div>
+      <p style="position:relative;font-size:.92rem">Or write to <b style="color:#F2FBFA;user-select:all">carerouteautomation@gmail.com</b></p>
+      <svg class="divider" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20h700l12-10 10 10 12-16 14 32 12-16h430" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div style="display:grid;gap:14px;align-content:start">
+        <a class="logo" href="#top" aria-label="CareRoute Automation home">
+          <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#0B1F3A"/><path d="M6 23h7l3-8 4.5 14 3-9H34" fill="none" stroke="#0FB5A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="34" cy="20" r="2.6" fill="#F2FBFA"/></svg>
+          <span>Care<span class="route">Route</span><small>Automation</small></span>
+        </a>
+        <p style="max-width:42ch">We automatically route every patient, task and piece of data to the right place, so healthcare teams can spend their time on care.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#roi">ROI calculator</a></li>
+          <li><a href="#founder">Founder</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li class="contact-line"><svg class="icon"><use href="#i-mail"/></svg><a href="mailto:carerouteautomation@gmail.com" id="emailText">carerouteautomation@gmail.com</a><button class="copy-btn" type="button" data-copy="carerouteautomation@gmail.com">Copy</button></li>
+          <li class="contact-line"><svg class="icon"><use href="#i-pulse"/></svg><a href="https://carerouteautomation.io/" target="_blank" rel="noopener">carerouteautomation.io</a></li>
+          <li class="contact-line"><svg class="icon"><use href="#i-wa"/></svg><a class="js-wa" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener">+91 98898 67096</a><button class="copy-btn" type="button" data-copy="+91 9889867096">Copy</button></li>
+          <li class="contact-line"><svg class="icon"><use href="#i-in"/></svg><a href="https://www.linkedin.com/in/saurabhdubey890" target="_blank" rel="noopener">linkedin.com/in/saurabhdubey890</a></li>
+          <li class="contact-line"><svg class="icon"><use href="#i-users"/></svg><span>Founder: <a href="mailto:saurabh.futurehealth@gmail.com">saurabh.futurehealth@gmail.com</a></span></li>
+          <li class="contact-line"><svg class="icon"><use href="#i-target"/></svg><span>Mohali, Chandigarh, India</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 CareRoute Automation · carerouteautomation.io. All rights reserved.</span>
+      <span>CareRoute Automation provides workflow automation services and does not provide medical advice.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= MOBILE BAR ================= -->
+<div class="mbar">
+  <a class="btn btn-primary js-book" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener"><svg class="icon"><use href="#i-calendar"/></svg>Book a Call</a>
+  <a class="btn btn-ghost js-wa" href="https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic" target="_blank" rel="noopener" style="background:var(--surface)"><svg class="icon"><use href="#i-wa"/></svg>WhatsApp</a>
+</div>
+
+<!-- ================= CHAT DEMO ================= -->
+<button class="chat-fab" id="chatFab" type="button" aria-expanded="false" aria-controls="chatPanel">
+  <span class="dot"><svg class="icon" style="width:18px;height:18px"><use href="#i-msg"/></svg></span><span class="lbl">Ask CareRoute</span>
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="CareRoute assistant demo" hidden>
+  <div class="chat-head">
+    <span class="av"><svg class="icon"><use href="#i-pulse"/></svg></span>
+    <div><b>CareRoute Assistant</b><small>Books visits 24/7</small></div>
+    <span class="demo-pill">DEMO</span>
+    <button class="chat-close" id="chatClose" type="button" aria-label="Close demo"><svg class="icon"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="chat-body" id="chatBody" aria-live="polite"></div>
+  <div class="chat-foot">
+    <small>Scripted demo. No real data.</small>
+    <button class="linkish" id="chatReplay" type="button">Replay</button>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   CONFIG: edit these when your details change
+   ===================================================== */
+const CONFIG = {
+  // Paste your Calendly / Cal.com link here. While empty, booking buttons open WhatsApp.
+  bookingUrl: "",
+  companyEmail: "carerouteautomation@gmail.com",
+  website: "https://carerouteautomation.io/",
+  whatsappUrl: "https://wa.me/919889867096?text=Hi%20Saurabh%2C%20I%27d%20like%20to%20automate%20my%20clinic",
+};
+const BOOK = CONFIG.bookingUrl || CONFIG.whatsappUrl;
+document.querySelectorAll(".js-book").forEach(a => a.href = BOOK);
+document.querySelectorAll(".js-wa").forEach(a => a.href = CONFIG.whatsappUrl);
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = (s, r = document) => r.querySelector(s);
+const ico = (id, cls = "icon") => `<svg class="${cls}"><use href="#i-${id}"/></svg>`;
+
+/* ---------- theme toggle ---------- */
+(function () {
+  const root = document.documentElement;
+  try { const t = localStorage.getItem("cr-theme"); if (t === "dark" || t === "light") root.dataset.theme = t; } catch (e) {}
+  $("#themeToggle").addEventListener("click", () => {
+    const current = root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const next = current === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("cr-theme", next); } catch (e) {}
+  });
+})();
+
+/* ---------- mobile menu ---------- */
+(function () {
+  const btn = $("#menuBtn"), nav = $("#mobileNav");
+  btn.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open);
+    btn.innerHTML = ico(open ? "x" : "menu");
+  });
+  nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+    nav.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); btn.innerHTML = ico("menu");
+  }));
+})();
+
+/* ---------- services ---------- */
+const SERVICES = [
+  { id: "intake", icon: "clipboard", t: "AI Patient Intake & Digital Forms", b: "Patients fill forms before they arrive. Answers land in your EHR on their own.",
+    pts: ["Mobile-friendly pre-visit forms sent automatically", "Auto-filled into your EHR or practice software", "Consent and history captured, no retyping"] },
+  { id: "remind", icon: "calendar", t: "Smart Scheduling & Reminders", b: "Fewer no-shows with reminders patients actually read.",
+    pts: ["Online and WhatsApp booking into your calendar", "SMS, WhatsApp and email reminders on a schedule", "Cancelled slots offered to the waitlist"] },
+  { id: "voice", icon: "headset", t: "AI Voice Receptionist & 24/7 Chat", b: "Every call and message answered, day or night.",
+    pts: ["Answers FAQs on timings, fees and directions", "Books, reschedules and confirms visits", "Hands complex cases to your staff with full context"] },
+  { id: "insurance", icon: "shield", t: "Insurance Eligibility & Prior Auth", b: "Know coverage before the patient walks in.",
+    pts: ["Eligibility checked automatically before visits", "Prior authorisation requests prepared and tracked", "Missing details flagged early to your team"] },
+  { id: "billing", icon: "receipt", t: "Medical Billing & Revenue Cycle", b: "Cleaner claims, faster payments, no forgotten denials.",
+    pts: ["Claims scrubbed for common errors before submission", "Denials turned into follow-up tasks instantly", "Payment status tracked in one place"] },
+  { id: "ehr", icon: "plug", t: "EHR / EMR & System Integrations", b: "Your tools finally talk to each other.",
+    pts: ["Connect EHR, CRM, labs, billing and spreadsheets", "Built with n8n, Zapier, Make or direct APIs", "One source of truth, no double entry"] },
+  { id: "lab", icon: "flask", t: "Lab & Report Delivery", b: "Results reach the right doctor and patient, securely and fast.",
+    pts: ["Reports routed to the ordering doctor automatically", "Patients notified when results are ready", "Critical values escalated to staff"] },
+  { id: "followup", icon: "repeat", t: "Follow-up, Recall & Retention", b: "Patients come back when they should.",
+    pts: ["Post-visit care instructions sent automatically", "Recall reminders for check-ups and refills", "Re-engagement journeys for lapsed patients"] },
+  { id: "leads", icon: "target", t: "Lead Generation & CRM Automation", b: "Every enquiry captured, answered and followed up.",
+    pts: ["Website, ads and WhatsApp leads in one CRM", "Instant first reply, then timed follow-ups", "See which channels bring real patients"] },
+  { id: "reviews", icon: "star", t: "Reviews & Reputation", b: "More happy patients say so online.",
+    pts: ["Review requests sent at the right moment", "Unhappy feedback routed privately to you first", "Review alerts and response reminders"] },
+  { id: "staff", icon: "badge", t: "Staff Ops & HR Workflows", b: "Less admin for the people running your clinic.",
+    pts: ["New-hire onboarding checklists and documents", "Shift rosters and leave requests", "Licence and credential renewal reminders"] },
+  { id: "dash", icon: "chart", t: "Real-time Dashboards & Reporting", b: "Today's numbers without opening a spreadsheet.",
+    pts: ["Bookings, no-shows, revenue and leads live", "Daily summary sent to the owner automatically", "Spot problems before they grow"] },
+];
+$("#svcGrid").innerHTML = SERVICES.map(s => `
+  <article class="svc reveal">
+    <span class="ico">${ico(s.icon)}</span>
+    <h3>${s.t.replace("&", "&amp;")}</h3>
+    <p class="benefit">${s.b}</p>
+    <details>
+      <summary><span class="more-l">Learn</span>${ico("chev")}</summary>
+      <ul>${s.pts.map(p => `<li>${ico("check")}<span>${p}</span></li>`).join("")}</ul>
+    </details>
+  </article>`).join("");
+
+/* ---------- hero route animation ---------- */
+(function () {
+  const STEPS = [
+    ["Enquiry", "New enquiry captured from WhatsApp ✓"],
+    ["Booking", "Appointment booked online ✓"],
+    ["Reminder", "Reminder sent automatically ✓"],
+    ["Check-in", "Digital check-in complete ✓"],
+    ["Visit", "Visit notes synced to the EHR ✓"],
+    ["Billing", "Claim checked and submitted ✓"],
+    ["Follow-up", "Follow-up care plan sent ✓"],
+    ["Review", "Review request delivered ✓"],
+  ];
+  const Y = 120, x0 = 70, x1 = 930, gap = (x1 - x0) / (STEPS.length - 1);
+  const xs = STEPS.map((_, i) => x0 + i * gap);
+  let d = `M 20 ${Y} L ${xs[0]} ${Y}`;
+  for (let i = 0; i < xs.length - 1; i++) {
+    const m = (xs[i] + xs[i + 1]) / 2;
+    d += ` L ${m - 20} ${Y} L ${m - 12} ${Y - 10} L ${m - 6} ${Y} L ${m} ${Y - 46} L ${m + 8} ${Y + 40} L ${m + 14} ${Y} L ${xs[i + 1]} ${Y}`;
+  }
+  d += ` L 980 ${Y}`;
+  const base = $("#routeBase"), live = $("#routeLive"), g = $("#routeNodes");
+  base.setAttribute("d", d); live.setAttribute("d", d);
+  g.innerHTML = STEPS.map((s, i) => `
+    <g class="node" data-i="${i}">
+      <circle class="ring" cx="${xs[i]}" cy="${Y}" r="15"/>
+      <circle class="core" cx="${xs[i]}" cy="${Y}" r="6"/>
+      <text x="${xs[i]}" y="${Y + 52}" text-anchor="middle">${s[0]}</text>
+    </g>`).join("");
+  const nodes = [...g.querySelectorAll(".node")];
+  const total = live.getTotalLength();
+  // find path length at each node
+  const nodeLen = xs.map(x => {
+    let lo = 0, hi = total;
+    for (let k = 0; k < 30; k++) { const mid = (lo + hi) / 2; if (live.getPointAtLength(mid).x < x) lo = mid; else hi = mid; }
+    return hi;
+  });
+  live.style.strokeDasharray = total;
+  const status = $("#routeStatus span");
+  let last = -1;
+  function paint(len) {
+    live.style.strokeDashoffset = total - len;
+    let cur = -1;
+    nodes.forEach((n, i) => { const on = len >= nodeLen[i] - 1; n.classList.toggle("on", on); if (on) cur = i; });
+    nodes.forEach((n, i) => n.classList.toggle("current", i === cur));
+    if (cur !== last && cur >= 0) { status.textContent = STEPS[cur][1]; last = cur; }
+  }
+  if (reduceMotion) { paint(total); return; }
+  const DUR = 9000, HOLD = 1800;
+  let start = null, running = true, raf;
+  function tick(t) {
+    if (!start) start = t;
+    const el = (t - start) % (DUR + HOLD);
+    paint(Math.min(el / DUR, 1) * total);
+    raf = requestAnimationFrame(tick);
+  }
+  paint(total); // complete at rest for first frame / thumbnails
+  setTimeout(() => { raf = requestAnimationFrame(tick); }, 900);
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting && !running) { running = true; start = null; raf = requestAnimationFrame(tick); }
+    else if (!e.isIntersecting && running) { running = false; cancelAnimationFrame(raf); }
+  }).observe($("#routeSvg"));
+})();
+
+/* ---------- count-up ---------- */
+function countUp(el, to, fmt = v => Math.round(v).toLocaleString("en-IN"), dur = 1100) {
+  if (reduceMotion) { el.textContent = fmt(to); return; }
+  const from = parseFloat(el.dataset.v || "0"); const t0 = performance.now();
+  el.dataset.v = to;
+  (function step(t) {
+    const p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmt(from + (to - from) * e);
+    if (p < 1) requestAnimationFrame(step);
+  })(t0);
+}
+(function () {
+  const els = document.querySelectorAll(".count");
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { el = e.target; el.dataset.v = 0; countUp(el, +el.dataset.to); io.unobserve(el); }
+  }), { threshold: .6 });
+  let el;
+  els.forEach(e => io.observe(e));
+})();
+
+/* ---------- before / after ---------- */
+(function () {
+  const sw = $("#baSwitch"), shell = $("#baShell"), word = $("#baWord"), sum = $("#baSum"), lbl = $("#baSumLabel");
+  sw.addEventListener("click", () => {
+    const on = sw.getAttribute("aria-checked") !== "true";
+    sw.setAttribute("aria-checked", on);
+    shell.dataset.state = on ? "after" : "before";
+    word.textContent = on ? "After CareRoute" : "Before CareRoute";
+    word.className = on ? "a" : "b";
+    lbl.textContent = on ? "Front desk time on manual admin" : "Front desk time on manual admin";
+    sum.textContent = on ? "Done automatically. Time back for patients." : "About 3 hrs of data entry a day";
+  });
+})();
+
+/* ---------- ROI calculator ---------- */
+(function () {
+  const CUR = {
+    INR: { sym: "₹", locale: "en-IN", rate: 200, vMin: 200, vMax: 5000, vStep: 50, vDef: 800 },
+    USD: { sym: "$", locale: "en-US", rate: 20, vMin: 20, vMax: 500, vStep: 5, vDef: 120 },
+  };
+  let cur = "INR";
+  const P = $("#rPatients"), S = $("#rStaff"), N = $("#rNoshow"), V = $("#rValue");
+  const money = v => CUR[cur].sym + Math.round(v).toLocaleString(CUR[cur].locale);
+  function fill(r) { r.style.setProperty("--p", ((r.value - r.min) / (r.max - r.min) * 100) + "%"); }
+  function calc() {
+    [P, S, N, V].forEach(fill);
+    const p = +P.value, s = +S.value, n = +N.value, v = +V.value, days = 24;
+    $("#oPatients").textContent = p; $("#oStaff").textContent = s; $("#oNoshow").textContent = n + "%"; $("#oValue").textContent = money(v);
+    const hours = Math.min(p * 4 * days / 60, s * 8 * days * 0.4);
+    const recovered = p * days * (n / 100) * 0.3 * v;
+    const cost = hours * CUR[cur].rate;
+    $("#rateNote").textContent = money(CUR[cur].rate);
+    countUp($("#mHours"), hours, x => Math.round(x).toLocaleString(CUR[cur].locale) + " hrs", 500);
+    countUp($("#mRevenue"), recovered, money, 500);
+    countUp($("#mCost"), cost, money, 500);
+  }
+  [P, S, N, V].forEach(r => r.addEventListener("input", calc));
+  document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
+    cur = b.dataset.cur;
+    document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    const c = CUR[cur]; V.min = c.vMin; V.max = c.vMax; V.step = c.vStep; V.value = c.vDef;
+    calc();
+  }));
+  calc();
+})();
+
+/* ---------- quiz ---------- */
+(function () {
+  const card = $("#quizCard");
+  const Q = [
+    { q: "What kind of practice do you run?", key: "type", opts: [
+      ["clinic", "stethoscope", "Clinic or practice"], ["hospital", "hospital", "Hospital"], ["lab", "flask", "Diagnostic lab"],
+      ["dental", "tooth", "Dental or specialty"], ["tele", "video", "Telehealth"], ["pharmacy", "pill", "Pharmacy"], ["billing", "building", "Billing company"] ] },
+    { q: "What's your biggest headache right now?", key: "pain", opts: [
+      ["noshow", "calendar", "No-shows and empty slots"], ["calls", "phone", "Too many phone calls"], ["claims", "receipt", "Insurance and claims"],
+      ["entry", "keyboard", "Manual data entry"], ["leads", "target", "Leads that go cold"], ["reports", "chart", "No clear reporting"] ] },
+    { q: "What are you using today?", key: "tools", opts: [
+      ["paper", "file", "Mostly paper and Excel"], ["ehr", "plug", "An EHR or practice software"], ["wa", "wa", "WhatsApp for most things"], ["mixed", "sheet", "A mix of several tools"] ] },
+  ];
+  const PAIN = { noshow: "remind", calls: "voice", claims: "billing", entry: "intake", leads: "leads", reports: "dash" };
+  const TOOLS = { paper: "intake", ehr: "ehr", wa: "remind", mixed: "ehr" };
+  const TYPE = { clinic: "followup", hospital: "staff", lab: "lab", dental: "reviews", tele: "voice", pharmacy: "followup", billing: "insurance" };
+  const FALLBACK = ["dash", "remind", "followup", "ehr"];
+  const MSG = {
+    clinic: "Clinics like yours usually win back the most time at the front desk first.",
+    hospital: "Hospitals see the biggest gains where departments hand work to each other.",
+    lab: "Labs gain most by getting reports to doctors and patients without manual steps.",
+    dental: "Specialty practices thrive on full calendars and returning patients.",
+    tele: "Telehealth runs on instant replies and smooth booking at any hour.",
+    pharmacy: "Pharmacies keep customers with timely refill reminders and quick answers.",
+    billing: "Billing teams recover revenue fastest by catching errors before submission.",
+  };
+  let step = 0; const ans = {};
+  function render() {
+    const bars = `<div class="quiz-progress" aria-hidden="true">${[0, 1, 2].map(i => `<i class="${i <= step ? "on" : ""}"></i>`).join("")}</div>`;
+    if (step < 3) {
+      const q = Q[step];
+      card.innerHTML = `${bars}<div class="quiz-q"><p style="color:var(--muted);font-size:.85rem;margin-bottom:6px">Question ${step + 1} of 3</p><h3>${q.q}</h3>
+        <div class="opts">${q.opts.map(o => `<button type="button" class="opt" data-v="${o[0]}">${ico(o[1])}<span>${o[2]}</span></button>`).join("")}</div></div>
+        <div class="quiz-nav">${step > 0 ? `<button class="linkish" type="button" id="qBack">← Back</button>` : "<span></span>"}<span></span></div>`;
+      card.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => { ans[q.key] = b.dataset.v; step++; render(); card.querySelector("button")?.focus({ preventScroll: true }); }));
+      $("#qBack")?.addEventListener("click", () => { step--; render(); });
+    } else {
+      const picks = [];
+      [PAIN[ans.pain], TOOLS[ans.tools], TYPE[ans.type], ...FALLBACK].forEach(id => { if (id && !picks.includes(id) && picks.length < 3) picks.push(id); });
+      const recs = picks.map(id => SERVICES.find(s => s.id === id));
+      card.innerHTML = `${bars}<p class="eyebrow">Your top 3 automations</p>
+        <h3 style="font-size:1.4rem;margin-top:10px">${MSG[ans.type]}</h3>
+        <ul class="recs">${recs.map(s => `<li><span class="ico">${ico(s.icon)}</span><div><b>${s.t.replace("&", "&amp;")}</b><span>${s.b}</span></div></li>`).join("")}</ul>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+          <a class="btn btn-primary" href="${BOOK}" target="_blank" rel="noopener">Book a call to plan these ${ico("arrow")}</a>
+          <button class="linkish" type="button" id="qAgain">Start again</button>
+        </div>`;
+      $("#qAgain").addEventListener("click", () => { step = 0; render(); });
+    }
+  }
+  render();
+})();
+
+/* ---------- chat demo ---------- */
+(function () {
+  const fab = $("#chatFab"), panel = $("#chatPanel"), body = $("#chatBody");
+  const SCRIPT = [
+    ["user", "Hi, I'd like to see a dermatologist this week."],
+    ["bot", "Hi! Happy to help. We have Thursday at 11:30 AM or Friday at 4:00 PM. Which works for you?"],
+    ["user", "Thursday 11:30 please."],
+    ["bot", "Booked ✓ Thursday, 11:30 AM. I've sent a confirmation on WhatsApp with a short pre-visit form, so there's no paperwork at the desk."],
+    ["user", "Is my insurance accepted?"],
+    ["bot", "Add your policy details in the form and we'll verify eligibility before your visit. You'll also get a reminder 24 hours before."],
+    ["sys", "Added to clinic calendar · Reminder scheduled · Intake form sent"],
+    ["cta", ""],
+  ];
+  let timers = [];
+  const clear = () => { timers.forEach(clearTimeout); timers = []; body.innerHTML = ""; };
+  function add(kind, text) {
+    const el = document.createElement("div");
+    if (kind === "cta") {
+      el.className = "msg bot";
+      el.innerHTML = `<b>Want this for your clinic?</b><br><a class="btn btn-primary btn-sm" style="margin-top:10px" href="${BOOK}" target="_blank" rel="noopener">Book a call ${ico("arrow")}</a>`;
+    } else { el.className = "msg " + kind; el.textContent = text; }
+    body.appendChild(el); body.scrollTop = body.scrollHeight;
+  }
+  function play() {
+    clear(); let t = 300;
+    SCRIPT.forEach(([k, txt]) => {
+      if (k === "bot" || k === "cta") {
+        timers.push(setTimeout(() => { const ty = document.createElement("div"); ty.className = "msg bot typing"; ty.id = "typing"; ty.innerHTML = "<i></i><i></i><i></i>"; body.appendChild(ty); body.scrollTop = body.scrollHeight; }, t));
+        t += reduceMotion ? 0 : 1100;
+        timers.push(setTimeout(() => { $("#typing")?.remove(); add(k, txt); }, t));
+      } else { timers.push(setTimeout(() => add(k, txt), t)); }
+      t += reduceMotion ? 0 : 900;
+    });
+  }
+  function open(o) {
+    panel.hidden = !o; fab.setAttribute("aria-expanded", o);
+    if (o) play(); else clear();
+  }
+  fab.addEventListener("click", () => open(panel.hidden));
+  $("#chatClose").addEventListener("click", () => { open(false); fab.focus(); });
+  $("#chatReplay").addEventListener("click", play);
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !panel.hidden) { open(false); fab.focus(); } });
+})();
+
+/* ---------- copy buttons ---------- */
+document.querySelectorAll(".copy-btn").forEach(b => b.addEventListener("click", () => {
+  const done = () => { b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1600); };
+  navigator.clipboard?.writeText(b.dataset.copy).then(done).catch(() => {
+    const r = document.createRange(); r.selectNodeContents(b.previousElementSibling); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selected";
+  });
+}));
+
+/* ---------- scroll reveal (only for items below the fold) ---------- */
+(function () {
+  if (reduceMotion || !("IntersectionObserver" in window)) return;
+  const items = [...document.querySelectorAll(".reveal")].filter(el => el.getBoundingClientRect().top > innerHeight);
+  items.forEach(el => el.classList.add("pre"));
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -8% 0px" });
+  items.forEach(el => io.observe(el));
+})();
+
+/* ---------- magnetic buttons ---------- */
+(function () {
+  if (reduceMotion || matchMedia("(hover: none)").matches) return;
+  document.querySelectorAll(".magnetic").forEach(b => {
+    b.addEventListener("mousemove", e => {
+      const r = b.getBoundingClientRect();
+      b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .18}px, ${(e.clientY - r.top - r.height / 2) * .25}px)`;
+    });
+    b.addEventListener("mouseleave", () => b.style.transform = "");
+  });
+})();
+</script>
+
+</body>
+</html>
